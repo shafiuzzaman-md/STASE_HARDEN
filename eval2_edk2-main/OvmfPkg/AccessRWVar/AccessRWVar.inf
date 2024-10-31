@@ -1,0 +1,50 @@
+## @file
+#  Read/Write NVRAM Variable Driver.
+#
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AccessRWVar
+  FILE_GUID                      = 6042339D-FED4-4E69-9E66-5E1555A73C60
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AccessRWVarEntryPoint
+
+[Sources]
+  AccessRWVar.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  MmServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  SmmMemLib
+  PcdLib
+
+[Pcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdUseAccessRWVariable
+
+[Guids]
+  gEfiRWVariableCommGuid            ## PRODUCES
+
+[Protocols]
+  gEfiAccessRWVarProtocolGuid		    ## PRODUCES
+  gEfiSmmVariableProtocolGuid       ## CONSUMES
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid

@@ -1,0 +1,40 @@
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = HardwareHandler
+  FILE_GUID                      = 6A4C1C96-F3DC-834C-7855-A031C9F76DA9
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HardwareHandlerEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  SmmMemLib
+
+[Protocols]
+  gEfiFanControllerProtocolGuid           ## PRODUCES
+  gEfiThermalSensorProtocolGuid           ## PRODUCES
+  gEfiVoltageRegulatorProtocolGuid        ## PRODUCES
+  gEfiLedControllerProtocolGuid           ## PRODUCES
+  gEfiButtonControllerProtocolGuid        ## PRODUCES
+  gEfiSmmVariableProtocolGuid             ## CONSUMES
+  gEfiHardwareLicenseProtocolGuid         ## CONSUMES
+  gEfiHardwareHandlerReadyProtocolGuid    ## PRODUCES
+
+[Guids]
+  gEfiHardwarHandlerVariableGuid
+
+[Sources]
+  HardwareHandler.c
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiHardwareLicenseProtocolGuid

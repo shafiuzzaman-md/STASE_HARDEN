@@ -1,0 +1,43 @@
+## @file
+#  Hardware HwAlarm Control Driver for DXE.
+#
+#
+##
+
+[Defines]
+  INF_VERSION       = 0x00010017
+  BASE_NAME         = DxeHwAlarm
+  FILE_GUID         = 74E4F83D-2115-4B12-B99A-E1D5BAA53531
+  VERSION_STRING    = 1.0
+  MODULE_TYPE       = DXE_DRIVER
+  ENTRY_POINT       = DxeHwAlarmEntryPoint
+#
+# The following information is for reference only and not required by the build tools.
+#
+# VALID_ARCHITECTURES = IA32 X64 EBC
+#
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  DebugLib
+  MemoryAllocationLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[Sources]
+  DxeHwAlarm.c
+
+[Protocols]
+  gEfiSmmCommunicationProtocolGuid        ## CONSUMES
+
+[Guids]
+  gEfiHwAlarmStatusCodeCommGuid           ## PRODUCES/CONSUMES
+  gEfiEventExitBootServicesGuid           ## CONSUMES
+
+[Depex]
+  gEfiSmmCommunicationProtocolGuid

@@ -1,0 +1,44 @@
+## @file
+#  Hardware HwAlarm Control Driver for SMM.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                 = 0x00010005
+  BASE_NAME                   = SmmHwAlarm
+  FILE_GUID                   = CDBFA71C-7809-42F3-94F8-AF257FCD2307
+  MODULE_TYPE                 = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION    = 0x0001000A
+  VERSION_STRING              = 1.0
+  ENTRY_POINT                 = SmmHwAlarmEntryPoint
+
+[Sources]
+  SmmHwAlarm.c
+  SmmHwAlarm.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MmServicesTableLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  SmmServicesTableLib
+  PcdLib
+  DebugLib
+
+[Protocols]
+  gEfiMmRscHandlerProtocolGuid            ## CONSUMED
+  gEfiMmRearSpeakerProtocolGuid           ## CONSUMED
+
+[Guids]
+  gEfiHwAlarmStatusCodeCommGuid           ## CONSUMED
+
+[Depex]
+  gEfiHwAlarmStatusCodeCommGuid

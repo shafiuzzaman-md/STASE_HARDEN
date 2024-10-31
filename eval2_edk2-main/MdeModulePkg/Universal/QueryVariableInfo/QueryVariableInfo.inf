@@ -1,0 +1,43 @@
+## @file
+#  Query Variable Driver.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = QueryVariableInfo
+  FILE_GUID                      = 54D44D19-EB32-4BB4-8D51-D5ECACCD09F1
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = QueryVariableInfoEntryPoint
+
+[Sources]
+  QueryVariableInfo.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  SmmServicesTableLib
+  MmServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+
+
+[Protocols]
+  gEfiQueryVariableInfoProtocolGuid		  ## PRODUCES
+
+[Guids]
+  gEfiQueryVariableInfoCommGuid		      ## PRODUCES
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid

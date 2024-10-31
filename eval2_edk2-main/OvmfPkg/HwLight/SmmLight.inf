@@ -1,0 +1,43 @@
+## @file
+#  Hardware Light Control Driver for SMM.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                 = 0x00010005
+  BASE_NAME                   = HwSmmLight
+  FILE_GUID                   = F29185CE-BC2A-4E3E-8452-709768C6E565
+  MODULE_TYPE                 = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION    = 0x0001000A
+  VERSION_STRING              = 1.0
+  ENTRY_POINT                 = SmmLightEntryPoint
+
+[Sources]
+  SmmLight.c
+  SmmLight.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MmServicesTableLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  SmmServicesTableLib
+  PcdLib
+  DebugLib
+
+[Protocols]
+  gEfiMmRscHandlerProtocolGuid            ## CONSUMED
+  gEfiMmFrontPanelLedProtocolGuid         ## CONSUMED
+
+[Guids]
+  gEfiLightStatusCodeCommunicationGuid    ## CONSUMED
+
+[Depex]
+  gEfiLightStatusCodeCommunicationGuid

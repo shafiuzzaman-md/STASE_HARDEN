@@ -1,0 +1,35 @@
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = ProcessFirmware
+  FILE_GUID                      = 8f797a7b-9c08-4867-b9a7-71110a095a9c
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ProcessFirmwareEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  ProcessFirmware.c
+  ProcessFirmware.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  SmmMemLib
+
+[Protocols]
+  gEfiProcessFirmwareReadyProtocolGuid    ## PRODUCES
+  gEfiProcessFirmwareProtocolGuid         ## PRODUCES
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiHardwareLicenseProtocolGuid

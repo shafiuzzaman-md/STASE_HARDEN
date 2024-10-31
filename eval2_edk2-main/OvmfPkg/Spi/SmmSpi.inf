@@ -1,0 +1,45 @@
+## @file
+#   Spi Flash Smm Driver.
+#
+#   This driver installs Smm Spi protocol. Its implementation depends on the full
+#   functionality of Spi Flash library that support read, write/erase flash access.
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010017
+  BASE_NAME                 = SmmSpi
+  FILE_GUID                 = 7E707A5F-3A03-4389-BF85-088D079887A0
+  VERSION_STRING            = 1.0
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  ENTRY_POINT               = SmmSpiEntryPoint
+
+
+[LibraryClasses]
+  DebugLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  BaseLib
+  SmmServicesTableLib
+  MmServicesTableLib
+  SmmMemLib
+  SpiFlashLib
+  MemoryAllocationLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiPayloadPkg/UefiPayloadPkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[Sources]
+  SmmSpi.c
+  SmmSpiCommon.h
+
+[Protocols]
+  gEfiMmEndOfDxeProtocolGuid    ## CONSUMES
+  gEfiDxeSmmSpiProtocolGuid     ## CONSUMES
+
+[Depex]
+  gEfiDxeSmmSpiProtocolGuid

@@ -1,0 +1,37 @@
+#!/bin/sh
+qemu-system-x86_64 \
+-machine q35,smm=on \
+-m 4096 \
+-nographic \
+-global driver=cfi.pflash01,property=secure,value=on \
+-drive file=Build/OvmfX64/DEBUG_GCC5/FV/OVMF_CODE.fd,if=pflash,format=raw,unit=0,readonly=on \
+-drive file=Build/OvmfX64/DEBUG_GCC5/FV/OVMF_VARS.fd,if=pflash,format=raw,unit=1 \
+-drive file=cert_disk.img,format=raw \
+-netdev bridge,id=net0,br=br0 \
+-device virtio-net-pci,netdev=net0 \
+-object rng-random,id=virtio-rng0,filename=/dev/urandom \
+-device virtio-rng-pci,rng=virtio-rng0,id=rng0,bus=pcie.0,addr=0x9 \
+-fw_cfg name=opt/org.tianocore/X-Cpuhp-Bugcheck-Override,string=yes
+#-serial stdio -boot n $@
+
+#-chardev socket,id=chrtpm,path=/tmp/swtpm-sock \
+#-tpmdev emulator,id=tpm0,chardev=chrtpm \
+#-device tpm-tis,tpmdev=tpm0 \
+
+
+
+#-initrd /home/harden/eval1/eval1_buildroot/buildroot/output/images/rootfs.cpio \
+#-kernel /home/harden/eval1/eval1_buildroot/buildroot/output/images/bzImage \
+#-append "rootwait root=/dev/vda console=tty1 console=ttyS0 keep_bootcon" \
+#-drive file=/home/harden/eval1/eval1_buildroot/buildroot/output/images/rootfs.ext2,if=virtio,format=raw \
+
+
+#-netdev user,id=net0,net=192.168.226.0/24,tftp=tftp/,bootfile=ipxe.efi \
+#-device virtio-net-pci,netdev=net0 \
+
+#-kernel /home/harden/eval1/eval1_buildroot/buildroot/output/images/bzImage \
+#-append "rootwait root=/dev/vda console=tty1 console=ttyS0 keep_bootcon" \
+
+#-netdev tap,id=net0,script=no,downscript=no,ifname=tap0 \
+#-device e1000,netdev=net0,mac=52:54:00:12:34:56 \
+

@@ -1,0 +1,43 @@
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = HardwareManager
+  FILE_GUID                      = FF27DFB8-A179-A35A-85C6-4094F11FC79D
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HardwareManagerEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  MmServicesTableLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  BaseMemoryLib
+  DebugLib
+
+[Guids]
+  gEfiHardwareManagerCommGuid
+  gEfiHardwarHandlerVariableGuid
+  
+[Protocols]
+  gEfiHardwareHandlerReadyProtocolGuid    ## CONSUMES
+  gEfiProcessFirmwareReadyProtocolGuid    ## CONSUMES
+  gEfiHardwareLicenseProtocolGuid         ## PRODUCES
+  gEfiThermalSensorProtocolGuid           ## CONSUMES
+  gEfiFanControllerProtocolGuid           ## CONSUMES
+  gEfiLedControllerProtocolGuid           ## CONSUMES
+  gEfiProcessFirmwareProtocolGuid         ## CONSUMES
+  gEfiSmmVariableProtocolGuid             ## CONSUMES
+
+[Sources]
+  HardwareManager.c
+  HardwareManager.h
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid

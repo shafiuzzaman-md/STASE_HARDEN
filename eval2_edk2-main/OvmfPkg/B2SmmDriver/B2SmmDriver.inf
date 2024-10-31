@@ -1,0 +1,39 @@
+# OvmfPkg/B2SmmDriver/B2SmmDriver.inf
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = B2SmmDriver
+  FILE_GUID                      = a1b2c3d4-e5f6-789a-bcde-ff1234567890
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = B2SmmDriverEntry
+
+[Sources]
+  B2SmmDriver.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  SmmServicesTableLib
+  MemoryAllocationLib
+  SmmMemLib
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiSmmCpuProtocolGuid  # Add this line
+  gEfiMpServiceProtocolGuid    # Add this line for EFI_PROCESSOR_INFORMATION
+  gEfiSmmVariableProtocolGuid
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid AND 
+  gEfiSmmSwDispatch2ProtocolGuid AND 
+  gEfiSmmVariableProtocolGuid

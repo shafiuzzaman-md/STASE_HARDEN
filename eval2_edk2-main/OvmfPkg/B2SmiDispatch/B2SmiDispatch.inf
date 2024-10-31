@@ -1,0 +1,48 @@
+## @file
+#
+#  SMM SMI Software dispatch module for B2.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = B2SmiDispatch
+  FILE_GUID                      = 218CEA8F-BDCD-410E-A876-6211CCFF96ED
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = B2SmiDispatchEntryPoint
+
+[Sources]
+  B2SmiDispatch.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+  UefiPayloadPkg/UefiPayloadPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  MmServicesTableLib
+  PcdLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  BaseMemoryLib
+  SmmMemLib
+  UefiLib
+  MemoryAllocationLib
+  DxeServicesLib
+  
+[Protocols]
+  gEfiSmmBase2ProtocolGuid          ## CONSUMES
+  gEfiSmmSwDispatch2ProtocolGuid    ## CONSUMES
+  gEfiB2SmiDispatchProtocolGuid	    ## PRODUCES
+  gEfiSmmCpuProtocolGuid            ## CONSUMED
+
+[Depex]
+  gEfiSmmSwDispatch2ProtocolGuid AND
+  gEfiSmmCpuProtocolGuid

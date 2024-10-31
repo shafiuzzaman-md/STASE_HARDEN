@@ -1,0 +1,46 @@
+## @file
+#  Executing some code on the Smm Stack Driver.
+#
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = KeyVaultSmi
+  FILE_GUID                      = d9b2d63f-a54c-4f1f-9d37-a915f54e7b93
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = KeyVaultInit
+
+[Sources]
+  KeyVault.c
+  KeyHash.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  MmServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  SmmMemLib
+
+[Guids]
+  gEfiKeyVaultCommGuid                         ## PRODUCES
+
+[Protocols]
+  gEfiKeyVaultProtocolGuid                     ## PRODUCES
+  
+[Depex]
+  TRUE
+

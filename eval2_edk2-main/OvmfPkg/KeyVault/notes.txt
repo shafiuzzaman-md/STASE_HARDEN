@@ -1,0 +1,9 @@
+Create a functioning KeyVault
+
+Where is the stack pointer at the vulnerable return?
+Find the stack frame boundaries for Smi function calls
+Find a valid address for the stack pointer redirect
+    - must be relatively close to the vulnerable return
+    - must not be overwritten by other stack frames
+    - should have the target address assigned it at some point
+
