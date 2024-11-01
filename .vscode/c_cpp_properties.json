@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/eval2_edk2-main/MdePkg/Include/Library",
+                "${workspaceFolder}/eval2_edk2-main/MdeModulePkg/Include/Protocol"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "ech.h": "c",
+        "smmvariable.h": "c"
+    }
+}

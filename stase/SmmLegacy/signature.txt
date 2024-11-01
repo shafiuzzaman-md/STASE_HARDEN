@@ -1,0 +1,10 @@
+Preconditions:
+IoRead8Value : int32 = symbolic
+(query [(Eq 16 (Read w8 0 IoRead8Value))]
+        FALSE)
+
+
+# Eq represents the equality operator.
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/SmmLegacy.c:58: ASSERTION FAIL: !StackIsExecutable

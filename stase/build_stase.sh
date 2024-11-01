@@ -13,23 +13,24 @@ KLEE="klee"
 # Source files
 SRC_MAIN="stase_main.c"
 SRC_PREDICATES="vulnerability_predicates.c"
-SRC_ECH="ECH.c"
+#SRC_ECH="ECH.c"
 
 # Output bitcode files
 BC_MAIN="stase_main.bc"
 BC_PREDICATES="vulnerability_predicates.bc"
-BC_ECH="ECH.bc"
+#BC_ECH="ECH.bc"
 BC_COMBINED="stase.bc"
 
 # Compilation step for each source file
 echo "Compiling source files to LLVM bitcode..."
 $CLANG -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone $SRC_MAIN -o $BC_MAIN
 $CLANG -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone $SRC_PREDICATES -o $BC_PREDICATES
-$CLANG -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone $SRC_ECH -o $BC_ECH
+#$CLANG -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone $SRC_ECH -o $BC_ECH
 
 # Linking step to combine bitcode files
 echo "Linking bitcode files..."
-$LLVM_LINK $BC_MAIN $BC_PREDICATES $BC_ECH -o $BC_COMBINED
+#$LLVM_LINK $BC_MAIN $BC_PREDICATES $BC_ECH -o $BC_COMBINED
+$LLVM_LINK $BC_MAIN $BC_PREDICATES -o $BC_COMBINED
 
 # Running KLEE on the combined bitcode
 # echo "Running KLEE on the combined bitcode..."
