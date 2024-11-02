@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import string
 
 def simplify_smt_expressions(text):
     # Replace symbolic array declarations with int32 symbolic variables
@@ -12,6 +13,17 @@ def simplify_smt_expressions(text):
     # Replace 'false' with 'FALSE' for consistency
     text = text.replace('false', 'FALSE')
     return text
+
+def sanitize_for_filename(name):
+    """
+    Removes or replaces characters that are invalid for filenames.
+    """
+    # Define valid characters: letters, digits, '-', '_', '.', '(', ')', and space
+    valid_chars = f"-_.() {string.ascii_letters}{string.digits}"
+    # Replace invalid characters with underscores
+    sanitized_name = ''.join(c if c in valid_chars else '_' for c in name)
+    # Optionally, truncate the name to a reasonable length
+    return sanitized_name[:100]  # Limit the length to 100 characters
 
 if len(sys.argv) < 2:
     print("Usage: python3 extract_signature.py <source_filename>")
@@ -40,25 +52,53 @@ files = os.listdir(source_dir)
 
 for file in files:
     if file.endswith('.assert.err'):
-        base = file[:-11]
+        base = file[:-11]  # Remove '.assert.err' to get the base name
         assert_err_path = os.path.join(source_dir, f"{base}.assert.err")
         kquery_path = os.path.join(source_dir, f"{base}.kquery")
         folder_name = None
 
+        # Extract the base name from the .assert.err file
         if os.path.exists(assert_err_path):
             with open(assert_err_path, 'r') as err_file:
                 for line in err_file:
                     if line.startswith("File:"):
                         match = re.search(r'File: .*\/(.*?)\.c', line)
                         if match:
-                            folder_name = match.group(1)
+                            base_folder = match.group(1)
                             break
 
-        if folder_name:
-            # Create the new folder inside 'stase_output' directory
-            new_folder_path = os.path.join(output_base_dir, folder_name)
-            os.makedirs(new_folder_path, exist_ok=True)
-            combined_file_path = os.path.join(new_folder_path, "signature.txt")
+        if base_folder:
+            # **Updated Folder Naming Logic Starts Here**
+
+            # Extract the assertion name from the postcondition file
+            assertion_name = None
+            with open(stase_output_path, 'r') as post_file:
+                for post_line in post_file:
+                    if "ASSERTION FAIL:" in post_line:
+                        # Example line:
+                        # KLEE: ERROR: ./instrumented_code/SmmLegacy.c:58: ASSERTION FAIL: !StackIsExecutable
+                        post_match = re.search(rf'{re.escape(base_folder)}\.c:\d+: ASSERTION FAIL: !?(\w+)', post_line)
+                        if post_match:
+                            assertion_name = post_match.group(1)
+                            break  # Assuming one assertion per .assert.err file
+
+            if assertion_name:
+                # Sanitize the assertion name
+                sanitized_assertion = sanitize_for_filename(assertion_name)
+                # Combine base name and sanitized assertion name
+                combined_folder_name = f"{base_folder}_{sanitized_assertion}"
+
+                # **Removed Counter Logic**
+
+                # Create the new folder inside 'stase_output' directory
+                new_folder_path = os.path.join(output_base_dir, combined_folder_name)
+                os.makedirs(new_folder_path, exist_ok=True)
+                combined_file_path = os.path.join(new_folder_path, "signature.txt")
+            else:
+                print(f"Warning: Assertion name not found for base '{base_folder}' in {postcondition_file}. Skipping folder creation.")
+                continue  # Skip to the next file
+
+            # **Updated Folder Naming Logic Ends Here**
 
             precondition_text = ''
             if os.path.exists(kquery_path):
