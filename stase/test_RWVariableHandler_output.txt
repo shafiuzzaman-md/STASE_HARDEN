@@ -1,14 +1,15 @@
 KLEE: NOTE: Using POSIX model: /home/shafi/klee_build/runtime/lib/libkleeRuntimePOSIX64_Debug+Asserts.bca
 KLEE: NOTE: Using klee-uclibc : /home/shafi/klee_build/runtime/lib/klee-uclibc.bca
-KLEE: output directory is "/home/shafi/Research/Harden/Eval2/STASE_eval2_edk2/stase/klee-out-161"
+KLEE: output directory is "/home/shafi/Research/Harden/Eval2/STASE_eval2_edk2/stase/klee-out-27"
 KLEE: Using Z3 solver backend
-KLEE: Logging queries that reach solver in .smt2 format to /home/shafi/Research/Harden/Eval2/STASE_eval2_edk2/stase/klee-out-161/solver-queries.smt2
+KLEE: Logging queries that reach solver in .smt2 format to /home/shafi/Research/Harden/Eval2/STASE_eval2_edk2/stase/klee-out-27/solver-queries.smt2
 
 KLEE: Deterministic allocator: Using quarantine queue size 8
-KLEE: Deterministic allocator: globals (start-address=0x7d083f800000 size=10 GiB)
-KLEE: Deterministic allocator: constants (start-address=0x7d05bf800000 size=10 GiB)
-KLEE: Deterministic allocator: heap (start-address=0x7c05bf800000 size=1024 GiB)
-KLEE: Deterministic allocator: stack (start-address=0x7be5bf800000 size=128 GiB)
+KLEE: Deterministic allocator: globals (start-address=0x724c85800000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x724a05800000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x714a05800000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x712a05800000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: AccessReadVariable
 KLEE: WARNING: undefined reference to function: AllocateCopyPool
 KLEE: WARNING: undefined reference to function: AllocatePool
 KLEE: WARNING: undefined reference to function: AllocateZeroPool
@@ -35,21 +36,31 @@ KLEE: WARNING: undefined reference to function: VariableHaveTcgProtocols
 KLEE: WARNING: undefined reference to function: VariableServiceGetVariable
 KLEE: WARNING: undefined reference to function: VariableServiceSetVariable
 KLEE: WARNING: undefined reference to function: ZeroMem
-KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 136271787720704) at klee/runtime/POSIX/fd.c:997 10
+KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 124470391996416) at klee/runtime/POSIX/fd.c:997 10
 KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
 KLEE: WARNING ONCE: calling __klee_posix_wrapped_main with extra arguments.
-KLEE: WARNING ONCE: calling external: printf(137469395730432) at ./ECH.c:227 1
+KLEE: WARNING ONCE: calling external: printf(125668000006144) at ./ECH.c:227 1
 DataContent:(Add w64 (ReadLSB w64 0 VariableName)
           (ZExt w64 (ReadLSB w32 0 CommBuffer->DataOffset)))
 VariableName:(ReadLSB w64 0 VariableName)
 MAX_LENGTH:1024
-KLEE: ERROR: ./instrumented_code/AccessRWVar.c:85: ASSERTION FAIL: !PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)
+KLEE: ERROR: ./instrumented_code/AccessRWVar.c:72: ASSERTION FAIL: !PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)
 KLEE: NOTE: now ignoring this error at this location
-KLEE: ERROR: ./instrumented_code/AccessRWVar.c:89: invalid function pointer
+DataContent:(Add w64 (ReadLSB w64 0 VariableName)
+          (ZExt w64 (ReadLSB w32 0 CommBuffer->DataOffset)))
+CommData->DataLength:12370169555311111083
+DataSize:(ReadLSB w64 0 *CommBufferSize)
+KLEE: ERROR: ./instrumented_code/AccessRWVar.c:87: ASSERTION FAIL: !PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize)
+KLEE: NOTE: now ignoring this error at this location
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (ReadLSB w64 0 VariableName) to value 13708464677421366507 (./instrumented_code/AccessRWVar.c:88)
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 CommBuffer->DataOffset) to value 0 (./instrumented_code/AccessRWVar.c:88)
+KLEE: WARNING ONCE: calling external: AccessReadVariable((ReadLSB w64 0 VariableName), 125078129868816, 125078129868832, 125078129868840, (Add w64 (ReadLSB w64 0 VariableName)
+          (ZExt w64 (ReadLSB w32 0 CommBuffer->DataOffset)))) at ./instrumented_code/AccessRWVar.c:88 12
+KLEE: ERROR: ./instrumented_code/AccessRWVar.c:88: failed external call: AccessReadVariable
 KLEE: NOTE: now ignoring this error at this location
 
-KLEE: done: total instructions = 17059
-KLEE: done: completed paths = 2
-KLEE: done: partially completed paths = 2
+KLEE: done: total instructions = 17021
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 3
 KLEE: done: generated tests = 4
 Environment initialized successfully.
