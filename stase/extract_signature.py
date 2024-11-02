@@ -25,10 +25,16 @@ parent_dir = os.path.abspath(os.path.join(source_dir, os.pardir))
 postcondition_file = f'{base_name}_output.txt'
 stase_output_path = os.path.join(parent_dir, postcondition_file)
 
-# Check if the staseOutput.txt exists before proceeding
+# Define the output base directory 'stase_output' outside of parent_dir
+output_base_dir = os.path.abspath(os.path.join(parent_dir, os.pardir, 'stase_output'))
+
+# Create 'stase_output' directory if it doesn't exist
+os.makedirs(output_base_dir, exist_ok=True)
+
+# Check if the output file exists before proceeding
 if not os.path.exists(stase_output_path):
     print(f"Error: The file {postcondition_file} does not exist.")
-    exit(1)  # Exit the script with an error code
+    exit(1)
 
 files = os.listdir(source_dir)
 
@@ -49,7 +55,8 @@ for file in files:
                             break
 
         if folder_name:
-            new_folder_path = os.path.join(parent_dir, folder_name)
+            # Create the new folder inside 'stase_output' directory
+            new_folder_path = os.path.join(output_base_dir, folder_name)
             os.makedirs(new_folder_path, exist_ok=True)
             combined_file_path = os.path.join(new_folder_path, "signature.txt")
 
@@ -101,4 +108,4 @@ for file in files:
             with open(combined_file_path, 'w') as combined_file:
                 combined_file.write(full_text)
 
-            print(f"Files have been combined and saved successfully in {folder_name}/signature.txt")
+            print(f"Files have been combined and saved successfully in {new_folder_path}/signature.txt")

@@ -5,10 +5,10 @@ KLEE: Using Z3 solver backend
 KLEE: Logging queries that reach solver in .smt2 format to /home/shafi/Research/Harden/Eval2/STASE_eval2_edk2/stase/klee-out-1/solver-queries.smt2
 
 KLEE: Deterministic allocator: Using quarantine queue size 8
-KLEE: Deterministic allocator: globals (start-address=0x793c52200000 size=10 GiB)
-KLEE: Deterministic allocator: constants (start-address=0x7939d2200000 size=10 GiB)
-KLEE: Deterministic allocator: heap (start-address=0x7839d2200000 size=1024 GiB)
-KLEE: Deterministic allocator: stack (start-address=0x7819d2200000 size=128 GiB)
+KLEE: Deterministic allocator: globals (start-address=0x72b69a000000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x72b41a000000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x71b41a000000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71941a000000 size=128 GiB)
 KLEE: WARNING: undefined reference to function: AllocateCopyPool
 KLEE: WARNING: undefined reference to function: AllocatePool
 KLEE: WARNING: undefined reference to function: AllocateZeroPool
@@ -35,10 +35,10 @@ KLEE: WARNING: undefined reference to function: VariableHaveTcgProtocols
 KLEE: WARNING: undefined reference to function: VariableServiceGetVariable
 KLEE: WARNING: undefined reference to function: VariableServiceSetVariable
 KLEE: WARNING: undefined reference to function: ZeroMem
-KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 132097391984640) at klee/runtime/POSIX/fd.c:997 10
+KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 124926002462720) at klee/runtime/POSIX/fd.c:997 10
 KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
 KLEE: WARNING ONCE: calling __klee_posix_wrapped_main with extra arguments.
-KLEE: WARNING ONCE: calling external: printf(133294999994368) at ./ECH.c:227 1
+KLEE: WARNING ONCE: calling external: printf(126123610472448) at ./ECH.c:227 1
 KLEE: ERROR: ./instrumented_code/B2SmmDriver.c:192: ASSERTION FAIL: !SMM_CALLOUT
 KLEE: NOTE: now ignoring this error at this location
 
