@@ -21,6 +21,4 @@ python3 stase/remove_macros.py
 
 ## Output
 
-stase_output/
-└── [file_name]/
-    └── signature.txt
+stase_output/file_name]/signature.txt
