@@ -1,0 +1,12 @@
+Preconditions:
+CommBuffer : int32 = symbolic
+(query [(Eq 2 (Read w8 9 CommBuffer))]
+        FALSE)
+
+
+# Eq represents the equality operator.
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/B2SmmDriver1.c:214: ASSERTION FAIL: !OffByOne(data->DataPort,MAX_VALUES)
+data->DataPort:(ZExt w32 (Read w8 9 CommBuffer))
+MAX_VALUES:2

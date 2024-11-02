@@ -22,4 +22,4 @@ array variables.error_types[24] : w32 -> w8 = symbolic
 # Mul represents the multiplication operator.
 
 Postconditions:
-KLEE: ERROR: ./instrumented_code/B2SmmDriver.c:192: ASSERTION FAIL: !SMM_CALLOUT
+KLEE: ERROR: ./instrumented_code/B2SmmDriver.c:217: ASSERTION FAIL: !SMM_CALLOUT

@@ -42,15 +42,31 @@ typedef struct {
 EFI_STATUS
 GetErrorTypes(
   OUT B2_ERROR_TYPES *Data
-)
+  )
 {
-  Data = malloc(sizeof(B2_ERROR_COUNT)); // Allocate memory for one UINTN.
-  klee_make_symbolic(Data, sizeof(B2_ERROR_COUNT), "variables.failures");
-  // Constrain the value to be between 0 and 10 inclusive
-  //klee_assume(*Data >= 0 && *Data <= 10);
-  
-  return EFI_SUCCESS;
+    EFI_STATUS                Status;
+    EFI_SMM_VARIABLE_PROTOCOL *SmmVariable;
+    UINTN                     DataSize;
+    
+    Status = gSmst->SmmLocateProtocol(
+                      &gEfiSmmVariableProtocolGuid,
+                      NULL,
+                      (void**)&SmmVariable
+                      );
+    if (EFI_ERROR (Status)) {
+      return Status;
+    }
+
+    DataSize = sizeof(B2_ERROR_TYPES);
+    return SmmVariable->SmmGetVariable(
+                          L"PowerStatus",
+                          &gB2SmiErrorTypeVariableGuid,
+                          NULL,
+                          &DataSize,
+                          Data
+                          );
 }
+
 
 /**
   This function sets the B2 error types.
@@ -93,19 +109,34 @@ SetErrorTypes(
   @retval     EFI_SUCCESS       The error count data was successfully retrieved.
   @retval     Others            Other errors as indicated.
 **/
-// Mock implementations of external functions
 EFI_STATUS
 GetErrorCount(
   OUT B2_ERROR_COUNT *Data
-)
+  )
 {
-  Data = malloc(sizeof(B2_ERROR_COUNT)); // Allocate memory for one UINTN.
-  klee_make_symbolic(Data, sizeof(B2_ERROR_COUNT), "variables.failures");
-  // Constrain the value to be between 0 and 10 inclusive
-  klee_assume(*Data >= 0 && *Data <= 10);
-  
-  return EFI_SUCCESS;
+    EFI_STATUS                Status;
+    EFI_SMM_VARIABLE_PROTOCOL *SmmVariable;
+    UINTN                     DataSize;
+
+    Status = gSmst->SmmLocateProtocol(
+                      &gEfiSmmVariableProtocolGuid,
+                      NULL,
+                      (void**)&SmmVariable
+                      );
+    if (EFI_ERROR (Status)) {
+      return Status;
+    }
+
+    DataSize = sizeof(B2_ERROR_COUNT);
+    return SmmVariable->SmmGetVariable(
+                          L"ErrorCount",
+                          &gB2SmiErrorCountVariableGuid,
+                          NULL,
+                          &DataSize,
+                          Data
+                          );
 }
+
 
 /**
   This function sets the B2 error count.
@@ -168,18 +199,12 @@ B2SmiHandler (
   EFI_SMM_SW_CONTEXT* data;
   B2_DATA_STORAGE     variables = {0};
   EFI_STATUS          Status;
-  
-  // Status = GetErrorTypes(&variables.error_types);
-  // if (EFI_ERROR (Status)) {
-  //   DEBUG((DEBUG_INFO, "B2SmmDriver/B2SmiHandler Failed GetErrorTypes\n"));
-  // }
-  
-  // Status = GetErrorCount(&variables.failures);
-  // if (EFI_ERROR (Status)) {
-  //   DEBUG((DEBUG_INFO, "B2SmmDriver/B2SmiHandler Failed GetErrorCount\n"));
-  // }
 
+
+
+  //Symbolic error_types
   klee_make_symbolic(&variables.error_types, sizeof(variables), "variables.error_types");
+
 
   if (CommBuffer != NULL && CommBufferSize != NULL && *CommBufferSize == sizeof(EFI_SMM_SW_CONTEXT)) {
     
@@ -187,8 +212,8 @@ B2SmiHandler (
     if (data->DataPort <= MAX_VALUES) {
       variables.error_types[data->DataPort] = 1;
       variables.failures++;
-     
       if (variables.failures == 10) {
+        //DEBUG((DEBUG_ERROR, "Error count exceeded: Halting Processor\n"));
         klee_assert(!SMM_CALLOUT);
         gRT->ResetSystem(EfiResetCold, EFI_SUCCESS, 0, NULL);
       }
