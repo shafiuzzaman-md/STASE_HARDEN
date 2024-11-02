@@ -10,7 +10,7 @@ set -x
 KLEE="/home/shafi/klee_build/bin/klee"
 
 # Define an array of source files
-sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c")
+sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c")
 
 # Loop over each source file
 for src in "${sources[@]}"; do

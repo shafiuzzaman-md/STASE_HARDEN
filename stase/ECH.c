@@ -141,10 +141,10 @@ StubSmmAllocatePool (
   }
 
   // Allocate memory using malloc for testing
-  *Buffer = malloc(Size);
-  if (*Buffer == NULL) {
-    return EFI_OUT_OF_RESOURCES;
-  }
+  // *Buffer = malloc(Size);
+  // if (*Buffer == NULL) {
+  //   return EFI_OUT_OF_RESOURCES;
+  // }
 
   return EFI_SUCCESS;
 }

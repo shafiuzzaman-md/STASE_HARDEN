@@ -3,6 +3,11 @@
         "cstdlib": "c",
         "ech.h": "c",
         "smmvariable.h": "c",
-        "smmswdispatch2.h": "c"
+        "smmswdispatch2.h": "c",
+        "smmlegacy.h": "c",
+        "accessrwvar.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }

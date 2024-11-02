@@ -38,6 +38,7 @@ int randomBoolean() {
 }
 #define PcdSmmLegacyPropertyMask (randomBoolean())
 #define _PCD_GET_MODE_32_PcdSmmLegacyPropertyMask (randomBoolean())
+#define _PCD_GET_MODE_BOOL_PcdUseAccessRWVariable (randomBoolean())
 
 //System table pointers
 EFI_MM_SYSTEM_TABLE  *gMmst = NULL; //MM System Table 

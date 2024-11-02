@@ -1,0 +1,22 @@
+Preconditions:
+array *CommBufferSize[8] : w32 -> w8 = symbolic
+array CommBuffer->DataOffset[4] : w32 -> w8 = symbolic
+VariableName : int32 = symbolic
+(query [(Eq FALSE
+             (Ult 1072
+                  (ReadLSB int64 0 *CommBufferSize)))
+         (Ule (Add int64 1024
+                       N0:(Add int64 N1:(ReadLSB int64 0 VariableName)
+                                   (ZExt int64 (ReadLSB w32 0 CommBuffer->DataOffset))))
+              (Add int64 N0 N1))]
+        FALSE)
+
+
+# ZExt (Zero Extension) extends a smaller integer type to a larger integer type by adding zeros to the higher-order bits.
+# Eq represents the equality operator.
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/AccessRWVar.c:85: ASSERTION FAIL: !PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)
+DataContent:(Add int64 (ReadLSB int64 0 VariableName)
+VariableName:(ReadLSB int64 0 VariableName)
+MAX_LENGTH:1024
