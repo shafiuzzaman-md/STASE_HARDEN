@@ -2,6 +2,7 @@
     "files.associations": {
         "cstdlib": "c",
         "ech.h": "c",
-        "smmvariable.h": "c"
+        "smmvariable.h": "c",
+        "smmswdispatch2.h": "c"
     }
 }
