@@ -41,10 +41,10 @@ int randomBoolean() {
 
 //System table pointers
 EFI_MM_SYSTEM_TABLE  *gMmst = NULL; //MM System Table 
-EFI_SMM_SYSTEM_TABLE2  *gSmst = NULL; //System Management System Table
+//EFI_SMM_SYSTEM_TABLE2  *gSmst = NULL; //System Management System Table
 EFI_BOOT_SERVICES  *gBS         = NULL; //EFI Boot Services Table
 EFI_DXE_SERVICES  *gDS = NULL; //DXE Services Table
-EFI_RUNTIME_SERVICES  *gRT = NULL;
+//EFI_RUNTIME_SERVICES  *gRT = NULL;
 EFI_SYSTEM_TABLE   *gST         = NULL;
 
 

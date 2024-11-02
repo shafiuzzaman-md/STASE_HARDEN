@@ -1,6 +1,7 @@
 #include "ECH.c"
-#include "instrumented_code/SmmLegacy.c"
 
+
+#include "instrumented_code/SmmLegacy.c"
 
 // Test handler function
 EFI_STATUS EFIAPI TestHandlerFunction(
@@ -9,7 +10,6 @@ EFI_STATUS EFIAPI TestHandlerFunction(
     IN OUT VOID *CommBuffer,
     IN OUT UINTN *CommBufferSize
 ) {
-    printf("TestHandlerFunction called\n");
     return EFI_SUCCESS;
 }
 
@@ -37,7 +37,7 @@ void RegisterTestHandlers() {
 }
 
 void test_SmmLegacyDispatcher() {
-     // Manually initialize the dispatch queue
+    // Manually initialize the dispatch queue
     mSmmLegacyDispatchQueue.ForwardLink = &mSmmLegacyDispatchQueue;
     mSmmLegacyDispatchQueue.BackLink = &mSmmLegacyDispatchQueue;
 
@@ -69,17 +69,24 @@ void test_SmmLegacyDispatcher() {
 
         // Running the dispatcher test
         EFI_STATUS status = SmmLegacyDispatcher(handle, RegisterContext, CommBuffer, &CommBufferSize);
-        printf("Test with buffer size %zu resulted in status: %u\n", CommBufferSize, status);
-
         free(CommBuffer);
     }
 }
 
+void InitializeMockSmst()
+{
+    // Zero out the structure
+  memset(&MockSmst, 0, sizeof(MockSmst));
+  // Assign the stubbed SmmAllocatePool function
+  MockSmst.SmmAllocatePool = StubSmmAllocatePool;
 
+  // Point gSmst to our mock SMST
+  gSmst = &MockSmst;
+}
 
 int main() {
-
     stase_init_env();
+     InitializeMockSmst();
     test_SmmLegacyDispatcher();
     return 0;
 }

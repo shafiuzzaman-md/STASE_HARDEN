@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 
 def simplify_smt_expressions(text):
     # Replace symbolic array declarations with int32 symbolic variables
@@ -12,9 +13,16 @@ def simplify_smt_expressions(text):
     text = text.replace('false', 'FALSE')
     return text
 
+if len(sys.argv) < 2:
+    print("Usage: python3 extract_signature.py <source_filename>")
+    exit(1)
+
+source_filename = sys.argv[1]
+base_name = os.path.splitext(os.path.basename(source_filename))[0]
+
 source_dir = 'klee-last'
 parent_dir = os.path.abspath(os.path.join(source_dir, os.pardir))
-postcondition_file = 'staseOutput.txt'
+postcondition_file = f'{base_name}_output.txt'
 stase_output_path = os.path.join(parent_dir, postcondition_file)
 
 # Check if the staseOutput.txt exists before proceeding
