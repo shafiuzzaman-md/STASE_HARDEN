@@ -1,3 +1,4 @@
 eval2_edk2-main/
+eval2_linux-main
 klee-*/
 *.bc

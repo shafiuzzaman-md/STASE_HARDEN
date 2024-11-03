@@ -22,3 +22,8 @@ python3 stase/remove_macros.py
 ## Output
 
 stase_output/file_name]/signature.txt
+
+# Linux
+## Generate ECH
+cd eval2_linux-main
+python3 ../stase/process_headers.py $(pwd)

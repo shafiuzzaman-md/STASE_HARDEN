@@ -10,7 +10,7 @@ set -x
 KLEE="/home/shafi/klee_build/bin/klee"
 
 # Define an array of source files
-sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c")
+sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_kbmi_usb.c")
 
 # Loop over each source file
 for src in "${sources[@]}"; do
@@ -28,7 +28,7 @@ for src in "${sources[@]}"; do
     "$KLEE" --external-calls=all -libc=uclibc --posix-runtime --smtlib-human-readable \
         --write-test-info --write-paths --write-smt2s --write-cov --write-cvcs \
         --write-kqueries --write-sym-paths --only-output-states-covering-new \
-        --use-query-log=solver:smt2 --simplify-sym-indices "$bc_file" > "$output_file" 2>&1
+        --use-query-log=solver:smt2 --simplify-sym-indices --max-time=60 "$bc_file" > "$output_file" 2>&1
 
     # Step 3: Run the Python script to extract the signature
     python3 extract_signature.py "$src"
