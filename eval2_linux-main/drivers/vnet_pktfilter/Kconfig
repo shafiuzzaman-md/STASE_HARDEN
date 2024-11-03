@@ -1,0 +1,5 @@
+config VNET_PKTFILTER
+  default m
+  tristate "Virtual Network Packet Filter Kernel Module"
+  help
+    Virtual Network Packet Filter.

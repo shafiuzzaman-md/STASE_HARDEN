@@ -1,0 +1,5 @@
+config EVT_NOTIFIER
+  default m
+  tristate "Device Event Notifer Driver Module"
+  help
+    Device Event Notifer Driver.

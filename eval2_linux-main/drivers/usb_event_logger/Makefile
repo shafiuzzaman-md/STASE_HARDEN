@@ -1,0 +1,1 @@
+obj-$(CONFIG_USB_EVENT_LOGGER) += usb_event_logger.o

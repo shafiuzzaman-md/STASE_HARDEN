@@ -1,0 +1,5 @@
+config KBMI_USB
+  default m
+  tristate "Keyboard Message Initializer USB"
+  help
+    Keyboard Message Initializer USB Device.

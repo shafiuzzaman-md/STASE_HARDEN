@@ -1,0 +1,5 @@
+config REV_CHARDEV
+  default m
+  tristate "Reverse String Module Driver"
+  help
+    Reverse String Module Driver.

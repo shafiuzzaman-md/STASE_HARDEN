@@ -1,0 +1,5 @@
+config MSG_QCHAR
+  default m
+  tristate "Message Queue Character Device Driver"
+  help
+    Message Queue Character Device Driver.

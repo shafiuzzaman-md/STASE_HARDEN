@@ -1,0 +1,5 @@
+config USB_EVENT_LOGGER
+  default m
+  tristate "USB Device Event Logger"
+  help
+    USB Device Event Logger.
