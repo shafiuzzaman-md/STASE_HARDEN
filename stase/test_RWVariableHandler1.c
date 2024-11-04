@@ -33,7 +33,7 @@ void test_RWVariableHandler() {
 
   COMMBUFFER_STRUCT *CommBuffer = malloc(sizeof(COMMBUFFER_STRUCT)); // Allocate memory
 
-  UINTN CommBufferSize = malloc(sizeof(UINTN)); // Allocate memory.
+  UINTN *CommBufferSize = malloc(sizeof(UINTN)); // Allocate memory.
   klee_make_symbolic(CommBufferSize, sizeof(UINTN), "*CommBufferSize"); // Make the allocated memory symbolic.
 
   // Make symbolic

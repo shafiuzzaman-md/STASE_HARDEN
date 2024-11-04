@@ -174,7 +174,7 @@ SmmLegacyDispatcher (
     ClearStackNx();
     // Dispatch the handler
     DispatchFunction = (EFI_SMM_HANDLER_ENTRY_POINT2)DispatchContext->DispatchFunction;
-    Status           = DispatchFunction (DispatchHandle, &RegContext, CommBuffer, &Size);
+    //Status           = DispatchFunction (DispatchHandle, &RegContext, CommBuffer, &Size);
 
     if ((ConfigurationFlags & 0x2) == 0) {
       // Only dispatch every registered handle if the configuration

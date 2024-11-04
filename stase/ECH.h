@@ -30,10 +30,10 @@
 #include "../eval2_edk2-main/MdeModulePkg/Universal/Variable/RuntimeDxe/TcgMorLockSmm.c"
 #include "../eval2_edk2-main/MdeModulePkg/Include/Protocol/SmmVariable.h"
 
-typedef struct {
-  UINT16    Limit;
-  UINTN     Base;
-} IA32_DESCRIPTOR;
+// typedef struct {
+//   UINT16    Limit;
+//   UINTN     Base;
+// } IA32_DESCRIPTOR;
 
 // Function to generate a symbolic value
 int randomBoolean() {
