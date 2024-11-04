@@ -66,10 +66,10 @@ RWVariableHandler (
   klee_make_symbolic(&VariableName, sizeof(VariableName), "VariableName");
   //VariableName = (CHAR16 *)(&(CommData->Data));
   DataContent = (void *)((UINTN)VariableName + CommData->DataOffset);
-  klee_print_expr("DataContent",DataContent);
-  klee_print_expr("VariableName",VariableName);
-  klee_print_expr("MAX_LENGTH",MAX_LENGTH);
-  klee_assert(!PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH));
+ // klee_print_expr("DataContent",DataContent);
+  //klee_print_expr("VariableName",VariableName);
+  //klee_print_expr("MAX_LENGTH",MAX_LENGTH);
+  //klee_assert(!PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH));
 
   // if ((UINT64)DataContent >= (UINT64)(VariableName + MAX_LENGTH)) {
   //  //DEBUG((DEBUG_ERROR, "%a: Data offset out of range !!!\n", __func__));
@@ -81,10 +81,10 @@ RWVariableHandler (
 
 
   if (CommData->AccessType & (READ_ATTRS | READ_DEF_ATTR)) {
-    // klee_print_expr("DataContent",DataContent);
-    // klee_print_expr("CommData->DataLength",CommData->DataLength);
-    // klee_print_expr("DataSize",DataSize);
-    // klee_assert(!PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize));
+    klee_print_expr("DataContent",DataContent);
+    klee_print_expr("CommData->DataLength",CommData->DataLength);
+    klee_print_expr("DataSize",DataSize);
+    klee_assert(!PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize));
     // Status = AccessReadVariable (
     //           VariableName,
     //           &(CommData->VariableGuid),

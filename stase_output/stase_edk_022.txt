@@ -17,12 +17,5 @@ VariableName : int32 = symbolic
 Postconditions:
 KLEE: ERROR: ./instrumented_code/AccessRWVar.c:72: ASSERTION FAIL: !PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)
 DataContent:(Add int64 (ReadLSB int64 0 VariableName)
-DataContent:(Add int64 (ReadLSB int64 0 VariableName)
 VariableName:(ReadLSB int64 0 VariableName)
 MAX_LENGTH:1024
-Postconditions:
-KLEE: ERROR: ./instrumented_code/AccessRWVar.c:87: ASSERTION FAIL: !PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize)
-DataContent:(Add int64 (ReadLSB int64 0 VariableName)
-DataContent:(Add int64 (ReadLSB int64 0 VariableName)
-CommData->DataLength:12370169555311111083
-DataSize:(ReadLSB int64 0 *CommBufferSize)

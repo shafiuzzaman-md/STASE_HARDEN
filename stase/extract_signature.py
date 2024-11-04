@@ -25,11 +25,12 @@ def sanitize_for_filename(name):
     # Optionally, truncate the name to a reasonable length
     return sanitized_name[:100]  # Limit the length to 100 characters
 
-if len(sys.argv) < 2:
-    print("Usage: python3 extract_signature.py <source_filename>")
-    exit(1)
+if len(sys.argv) < 3:
+        print("Usage: python3 extract_signature.py <source_file_path> <output_file_name>")
+        exit(1)
 
 source_filename = sys.argv[1]
+output_file_name = sys.argv[2]
 base_name = os.path.splitext(os.path.basename(source_filename))[0]
 
 source_dir = 'klee-last'
@@ -91,9 +92,9 @@ for file in files:
                 # **Removed Counter Logic**
 
                 # Create the new folder inside 'stase_output' directory
-                new_folder_path = os.path.join(output_base_dir, combined_folder_name)
-                os.makedirs(new_folder_path, exist_ok=True)
-                combined_file_path = os.path.join(new_folder_path, "signature.txt")
+                #new_folder_path = os.path.join(output_base_dir, combined_folder_name)
+                #os.makedirs(new_folder_path, exist_ok=True)
+                combined_file_path = os.path.join(output_base_dir, output_file_name)
             else:
                 print(f"Warning: Assertion name not found for base '{base_folder}' in {postcondition_file}. Skipping folder creation.")
                 continue  # Skip to the next file
@@ -148,4 +149,4 @@ for file in files:
             with open(combined_file_path, 'w') as combined_file:
                 combined_file.write(full_text)
 
-            print(f"Files have been combined and saved successfully in {new_folder_path}/signature.txt")
+            print(f"Files have been combined and saved successfully")
