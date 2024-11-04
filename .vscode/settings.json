@@ -9,6 +9,8 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "sched.h": "c"
+        "sched.h": "c",
+        "mmservicestablelib.h": "c",
+        "pismmcpudxesmm.h": "c"
     }
 }
