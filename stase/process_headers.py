@@ -5,14 +5,19 @@ import sys
 def find_exact_file_in_directory(directories, filename, target_directory):
     for directory in directories:
         for root, dirs, files in os.walk(directory):
-            if filename in files and os.path.basename(root) == target_directory:
-                return os.path.join(root, filename)
-            
-def find_exact_file(directories, filename):
+            if filename in files:
+                # Check if the root directory ends with the target_directory
+                root_dirs = root.split(os.sep)
+                if root_dirs[-len(target_directory.split(os.sep)):] == target_directory.split(os.sep):
+                    return os.path.join(root, filename)
+    return None  # Return None if not found in target_directory
+
+def find_exact_file_anywhere(directories, filename):
     for directory in directories:
         for root, dirs, files in os.walk(directory):
             if filename in files:
                 return os.path.join(root, filename)
+    return None  # Return None if not found anywhere
 
 def find_files_with_pattern(directories, pattern):
     matching_files = []
@@ -63,26 +68,25 @@ def process_directories(directories):
                                 full_path = match_filename.group(1)
                                 base_filename = os.path.basename(full_path)
                                 include_directory = os.path.dirname(full_path)
-                                # Using the extracted base filename to find the exact file
-                                if include_directory:
-                                    exact_file_path = find_exact_file_in_directory(directories, base_filename, include_directory)
-                                else:
-                                    exact_file_path = find_exact_file(directories, base_filename)
-                                #print(f"Found directory: {os.path.basename(os.path.dirname(exact_file_path))}")
+
+                                # First, try to find the exact file in the target directory
+                                exact_file_path = find_exact_file_in_directory(directories, base_filename, include_directory)
+                                
+                                # If not found, search for the file anywhere in the root directories
+                                if not exact_file_path:
+                                    exact_file_path = find_exact_file_anywhere(directories, base_filename)
+
                                 if exact_file_path:
                                     # Replace the matched line in the original file with the exact_file_path
                                     replace_line_with_exact_path(file_path, line_number, f'#include "{exact_file_path}"')
                                     print(f"\nStatement: {full_path}")
                                     print(f"\nUpdated Statement: {exact_file_path}")
-                                    
                                 else:
                                     print("\nNo exact file found for the extracted filename.")
                                     print(f"Lines matching the pattern in {file_path}:")
                                     print(line)
                             else:
                                 print("\nUnable to extract filename from the matched line.")
-                    # else:
-                    #     print(f"No matching lines found in {file_path}.\n")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

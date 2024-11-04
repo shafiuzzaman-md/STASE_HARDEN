@@ -2,15 +2,12 @@ Preconditions:
 array *CommBufferSize[8] : w32 -> w8 = symbolic
 array CommBuffer->DataOffset[4] : w32 -> w8 = symbolic
 VariableName : int32 = symbolic
-(query [(Eq FALSE
-             (Ult 1072
-                  N0:(ReadLSB int64 0 *CommBufferSize)))
-         (Eq FALSE
-             (Ule (Add int64 1024
-                           N1:(Add int64 N2:(ReadLSB int64 0 VariableName)
-                                       (ZExt int64 (ReadLSB w32 0 CommBuffer->DataOffset))))
-                  (Add int64 N1 N2)))
-         (Ule (Add int64 N1 N0) (Add int64 12370169555311111083 N1))]
+(query [(Eq 0
+             (ReadLSB int64 0 *CommBufferSize))
+         (Ule (Add int64 1024
+                       N0:(Add int64 N1:(ReadLSB int64 0 VariableName)
+                                   (ZExt int64 (ReadLSB w32 0 CommBuffer->DataOffset))))
+              (Add int64 N0 N1))]
         FALSE)
 
 

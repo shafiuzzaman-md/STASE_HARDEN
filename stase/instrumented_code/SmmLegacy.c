@@ -2,7 +2,7 @@
    Executing some code on the Smm Stack Driver.
 
 **/
-#include "../../eval2_edk2-main/UefiCpuPkg/PiSmmCpuDxeSmm/SmmLegacy.h"
+#include "SmmLegacy.h"
 BOOLEAN StackIsExecutable = FALSE;
 UINT32        ConfigurationFlags      = 0x00;
 wchar_t        SmmLegacyVariableName[] = L"SmmLegacyConfiguration";
@@ -150,7 +150,7 @@ SmmLegacyDispatcher (
   // Get the dispatch settings
   //
   Status = GetNvConfiguration();
-
+ 
   if (EFI_ERROR (Status)) {
     ConfigurationFlags = 0x07;
     DEBUG((DEBUG_INFO, "%a: Smm Legacy configuration fail. Using default 0x%08x\n", __func__, ConfigurationFlags));
@@ -162,17 +162,15 @@ SmmLegacyDispatcher (
   Size                    = *CommBufferSize;
   RegContext.InputValue   = CpuContext.CommandPort;
   DispatchContext         = (EFI_SMM_LEGACY_DISPATCH_CONTEXT *)NULL;
- 
+    
   FindContextBySwSmiInputValue (CpuContext.CommandPort, &DispatchContext);
-  if (DispatchContext == (EFI_SMM_LEGACY_DISPATCH_CONTEXT *)NULL) {
-   // DEBUG((DEBUG_ERROR, "No handlers for SMI value 0x%x\n", CpuContext.CommandPort));
-    Status = EFI_NOT_FOUND;
-    goto done;
-  }
- 
+  // if (DispatchContext == (EFI_SMM_LEGACY_DISPATCH_CONTEXT *)NULL) {
+  //  // DEBUG((DEBUG_ERROR, "No handlers for SMI value 0x%x\n", CpuContext.CommandPort));
+  //   Status = EFI_NOT_FOUND;
+  //   goto done;
+  // }
+
   while (DispatchContext != (EFI_SMM_LEGACY_DISPATCH_CONTEXT *)NULL) {
-
-
     ClearStackNx();
     // Dispatch the handler
     DispatchFunction = (EFI_SMM_HANDLER_ENTRY_POINT2)DispatchContext->DispatchFunction;

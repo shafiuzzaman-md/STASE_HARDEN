@@ -85,13 +85,13 @@ RWVariableHandler (
     klee_print_expr("CommData->DataLength",CommData->DataLength);
     klee_print_expr("DataSize",DataSize);
     klee_assert(!PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize));
-    Status = AccessReadVariable (
-              VariableName,
-              &(CommData->VariableGuid),
-              &(CommData->Attributes),
-              &(CommData->DataLength),
-              DataContent
-              );
+    // Status = AccessReadVariable (
+    //           VariableName,
+    //           &(CommData->VariableGuid),
+    //           &(CommData->Attributes),
+    //           &(CommData->DataLength),
+    //           DataContent
+    //           );
     if (!EFI_ERROR (Status)) {
       DataSize += CommData->DataLength;
     }
