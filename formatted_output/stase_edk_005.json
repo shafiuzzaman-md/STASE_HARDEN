@@ -1,0 +1,8 @@
+{
+    "type": "!StackIsExecutable",
+    "file": "SmmLegacy.c",
+    "line": 58,
+    "variables": [
+        "IoRead8Value"
+    ]
+}
