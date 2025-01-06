@@ -8,10 +8,10 @@ set -e
 KLEE="/home/shafi/klee_build/bin/klee"
 
 # Define an array of source files
-sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_RWVariableHandler1.c" "test_kbmi_usb.c")
+sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_RWVariableHandler1.c" "test_kbmi_usb.c" "test_kbmi_usb1.c")
 
 # Define an array of output file names corresponding to the source files
-outputd=("stase_edk_005.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_001.txt")
+outputd=("stase_edk_005.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_001.txt" "stase_linux_WMI2.txt")
 
 # Ensure that both arrays have the same length
 if [ ${#sources[@]} -ne ${#outputd[@]} ]; then
@@ -38,7 +38,7 @@ for i in "${!sources[@]}"; do
     "$KLEE" --external-calls=all -libc=uclibc --posix-runtime --smtlib-human-readable \
         --write-test-info --write-paths --write-smt2s --write-cov --write-cvcs \
         --write-kqueries --write-sym-paths --only-output-states-covering-new \
-        --use-query-log=solver:smt2 --simplify-sym-indices --max-time=60 "$bc_file" > "$klee_output_file" 2>&1
+        --use-query-log=solver:smt2 --simplify-sym-indices --max-time=5 "$bc_file" > "$klee_output_file" 2>&1
     echo "Ran KLEE on ${bc_file}, output redirected to ${klee_output_file}"
 
     # Step 3: Run the Python script to extract the signature

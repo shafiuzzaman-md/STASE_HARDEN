@@ -1,14 +1,14 @@
 KLEE: NOTE: Using POSIX model: /home/shafi/klee_build/runtime/lib/libkleeRuntimePOSIX64_Debug+Asserts.bca
 KLEE: NOTE: Using klee-uclibc : /home/shafi/klee_build/runtime/lib/klee-uclibc.bca
-KLEE: output directory is "/home/shafi/Research/Harden/Eval2/STASE_HARDEN_EVAL2/stase/klee-out-3"
+KLEE: output directory is "/home/shafi/Research/Harden/Eval2/STASE_HARDEN_EVAL2/stase/klee-out-46"
 KLEE: Using Z3 solver backend
-KLEE: Logging queries that reach solver in .smt2 format to /home/shafi/Research/Harden/Eval2/STASE_HARDEN_EVAL2/stase/klee-out-3/solver-queries.smt2
+KLEE: Logging queries that reach solver in .smt2 format to /home/shafi/Research/Harden/Eval2/STASE_HARDEN_EVAL2/stase/klee-out-46/solver-queries.smt2
 
 KLEE: Deterministic allocator: Using quarantine queue size 8
-KLEE: Deterministic allocator: globals (start-address=0x765e85e00000 size=10 GiB)
-KLEE: Deterministic allocator: constants (start-address=0x765c05e00000 size=10 GiB)
-KLEE: Deterministic allocator: heap (start-address=0x755c05e00000 size=1024 GiB)
-KLEE: Deterministic allocator: stack (start-address=0x753c05e00000 size=128 GiB)
+KLEE: Deterministic allocator: globals (start-address=0x7f8b29a00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7f88a9a00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7e88a9a00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7e68a9a00000 size=128 GiB)
 KLEE: WARNING: undefined reference to function: AccessReadVariable
 KLEE: WARNING: undefined reference to function: AllocateCopyPool
 KLEE: WARNING: undefined reference to function: AllocatePool
@@ -36,10 +36,10 @@ KLEE: WARNING: undefined reference to function: VariableHaveTcgProtocols
 KLEE: WARNING: undefined reference to function: VariableServiceGetVariable
 KLEE: WARNING: undefined reference to function: VariableServiceSetVariable
 KLEE: WARNING: undefined reference to function: ZeroMem
-KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 128945754210304) at klee/runtime/POSIX/fd.c:997 10
+KLEE: WARNING ONCE: calling external: syscall(16, 0, 21505, 139033084690432) at klee/runtime/POSIX/fd.c:997 10
 KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
 KLEE: WARNING ONCE: calling __klee_posix_wrapped_main with extra arguments.
-KLEE: WARNING ONCE: calling external: printf(130143362220032) at ./ECH.c:227 1
+KLEE: WARNING ONCE: calling external: printf(140230692700160) at ./ECH.c:227 1
 KLEE: ERROR: ./ECH.c:144: concretized symbolic size
 KLEE: NOTE: now ignoring this error at this location
 DataContent:(Add w64 (ReadLSB w64 0 VariableName)
@@ -52,7 +52,7 @@ KLEE: WARNING ONCE: calling external: DebugAssertEnabled() at ./../eval2_edk2-ma
 KLEE: ERROR: ./../eval2_edk2-main/MdePkg/Library/BaseMemoryLib/CopyMemWrapper.c:51: failed external call: DebugAssertEnabled
 KLEE: NOTE: now ignoring this error at this location
 
-KLEE: done: total instructions = 16996
+KLEE: done: total instructions = 16995
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 3
 KLEE: done: generated tests = 4
