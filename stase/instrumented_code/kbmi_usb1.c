@@ -37,7 +37,7 @@
 #define NOTIFY_OK 0
 char message_buffer[MESSAGE_SIZE];
 extern void make_dynamic_area(void);
-int g_write_to_stack = 0;
+int UserDataIsInjectedOnStack = 0;
 /*
  * load_message_to_memory - Loads and processes the message from the KBMP 
  * message buffer.
@@ -75,9 +75,8 @@ void load_message_to_memory(void) {
         printf("Code size exceeds buffer capacity\n");
         return;
     }
-
-    g_write_to_stack = 1;//memcpy(code_segment, code_start, code_size);
-    klee_assert(!g_write_to_stack && "We wrote to code_segment on the stack!");
+    UserDataIsInjectedOnStack = 1;//memcpy(code_segment, code_start, code_size);
+    klee_assert(!UserDataIsInjectedOnStack);
     for (int i = 0; i < code_size-2; i++) {
         if (code_segment[i] == 0x00 &&
              code_segment[i+1] == 0xff && 
