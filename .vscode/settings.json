@@ -12,6 +12,8 @@
         "sched.h": "c",
         "mmservicestablelib.h": "c",
         "pismmcpudxesmm.h": "c",
-        "notifier.h": "c"
+        "notifier.h": "c",
+        "dangling_usb_logger.h": "c",
+        "stdio.h": "c"
     }
 }

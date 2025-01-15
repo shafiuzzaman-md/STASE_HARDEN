@@ -1,0 +1,6 @@
+Preconditions:
+(query [] FALSE)
+
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/usb_event_logger.c:106: ASSERTION FAIL: !DANGLING_POINTER_USED
