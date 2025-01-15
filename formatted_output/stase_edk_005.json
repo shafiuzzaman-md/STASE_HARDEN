@@ -1,5 +1,5 @@
 {
-    "type": "!StackIsExecutable",
+    "type": "StackIsExecutable",
     "file": "SmmLegacy.c",
     "line": 58,
     "variables": [

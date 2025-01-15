@@ -14,6 +14,10 @@ def extract_data_from_content(content):
     else:
         file, line, assertion_fail = '', '', ''
 
+    # --- Remove leading '!' if present in the assertion fail message ---
+    if assertion_fail.startswith('!'):
+        assertion_fail = assertion_fail[1:].strip()
+
     # Initialize a set to capture variables, ensuring uniqueness
     variables_set = set()
 

@@ -11,7 +11,7 @@ KLEE="/home/shafi/klee_build/bin/klee"
 sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_RWVariableHandler1.c" "test_kbmi_usb.c" "test_kbmi_usb1.c")
 
 # Define an array of output file names corresponding to the source files
-outputd=("stase_edk_005.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_001.txt" "stase_linux_WMI2.txt")
+outputd=("stase_edk_005.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_WMI1.txt" "stase_linux_WMI2.txt")
 
 # Ensure that both arrays have the same length
 if [ ${#sources[@]} -ne ${#outputd[@]} ]; then

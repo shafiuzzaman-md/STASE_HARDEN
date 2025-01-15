@@ -1,10 +1,10 @@
 {
-    "type": "!PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)",
+    "type": "PointerOutofBounds((UINT64)DataContent, (UINT64)(VariableName), MAX_LENGTH)",
     "file": "AccessRWVar.c",
     "line": 72,
     "variables": [
-        "VariableName",
+        "array CommBuffer->DataOffset[4]",
         "array *CommBufferSize[8]",
-        "array CommBuffer->DataOffset[4]"
+        "VariableName"
     ]
 }

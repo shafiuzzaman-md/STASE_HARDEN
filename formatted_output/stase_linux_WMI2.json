@@ -1,0 +1,8 @@
+{
+    "type": "UserDataIsInjectedOnStack",
+    "file": "kbmi_usb1.c",
+    "line": 79,
+    "variables": [
+        "message_buffer"
+    ]
+}

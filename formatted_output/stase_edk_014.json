@@ -1,5 +1,5 @@
 {
-    "type": "!SMM_CALLOUT",
+    "type": "SMM_CALLOUT",
     "file": "B2SmmDriver.c",
     "line": 217,
     "variables": [

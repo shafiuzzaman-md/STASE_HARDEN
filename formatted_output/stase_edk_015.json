@@ -1,5 +1,5 @@
 {
-    "type": "!OffByOne(data->DataPort,MAX_VALUES)",
+    "type": "OffByOne(data->DataPort,MAX_VALUES)",
     "file": "B2SmmDriver1.c",
     "line": 214,
     "variables": [

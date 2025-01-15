@@ -10,4 +10,4 @@ message_buffer : int32 = symbolic
 # Eq represents the equality operator.
 
 Postconditions:
-KLEE: ERROR: ./instrumented_code/kbmi_usb1.c:80: ASSERTION FAIL: !g_write_to_stack && "We wrote to code_segment on the stack!"
+KLEE: ERROR: ./instrumented_code/kbmi_usb1.c:79: ASSERTION FAIL: !UserDataIsInjectedOnStack

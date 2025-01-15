@@ -11,6 +11,7 @@
         "string_view": "c",
         "sched.h": "c",
         "mmservicestablelib.h": "c",
-        "pismmcpudxesmm.h": "c"
+        "pismmcpudxesmm.h": "c",
+        "notifier.h": "c"
     }
 }

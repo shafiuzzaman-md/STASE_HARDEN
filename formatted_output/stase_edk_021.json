@@ -1,10 +1,10 @@
 {
-    "type": "!PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize)",
+    "type": "PointerOutofBounds((UINTN)DataContent, CommData->DataLength, DataSize)",
     "file": "AccessRWVar1.c",
     "line": 87,
     "variables": [
-        "VariableName",
+        "array CommBuffer->DataOffset[4]",
         "array *CommBufferSize[8]",
-        "array CommBuffer->DataOffset[4]"
+        "VariableName"
     ]
 }
