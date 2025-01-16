@@ -3,8 +3,8 @@
     "file": "AccessRWVar1.c",
     "line": 87,
     "variables": [
-        "array *CommBufferSize[8]",
         "VariableName",
+        "array *CommBufferSize[8]",
         "array CommBuffer->DataOffset[4]"
     ]
 }

@@ -25,6 +25,7 @@
         "thermalsensor.h": "c",
         "fancontroller.h": "c",
         "ledcontroller.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "klee.h": "c"
     }
 }

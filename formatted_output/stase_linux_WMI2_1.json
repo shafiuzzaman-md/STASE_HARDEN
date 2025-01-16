@@ -1,0 +1,8 @@
+{
+    "type": "UserDataIsInjectedOnStack",
+    "file": "kbmi_net1.c",
+    "line": 70,
+    "variables": [
+        "message_buffer"
+    ]
+}

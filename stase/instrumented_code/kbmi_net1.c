@@ -16,7 +16,7 @@
 #include "dynamic_util.c"
 
 #define NF_ACCEPT 0
-
+int UserDataIsInjectedOnStack = 0;
 
 
 
@@ -37,19 +37,21 @@ char message_buffer[MESSAGE_SIZE];
  *
  * Return: NF_ACCEPT to allow the packet to continue, or other values to drop it.
  */
-
 void process_packet_message(void)
 {
     char code_segment[MESSAGE_SIZE] = {0};
 
+   
     if (!message_buffer[0])
         return;
 
+    
     char *message_separator = strchr(message_buffer, '\0');
     if (!message_separator) {
         pr_err("Separator not found\n");
         return;
     }
+
 
     if (message_separator - message_buffer == MESSAGE_SIZE - 1) {
         pr_debug("Separator was at end\n");
@@ -64,8 +66,8 @@ void process_packet_message(void)
         pr_err("Code size exceeds buffer capacity\n");
         return;
     }
-
-   memcpy(code_segment, code_start, code_size);
+    UserDataIsInjectedOnStack = 1;//memcpy(code_segment, code_start, code_size);
+    klee_assert(!UserDataIsInjectedOnStack);
 
     for (int i = 0; i < code_size-2; i++) {
         if (code_segment[i] == 0x00 &&
