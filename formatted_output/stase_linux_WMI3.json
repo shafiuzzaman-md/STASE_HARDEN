@@ -1,0 +1,6 @@
+{
+    "type": "DANGLING_POINTER_USED",
+    "file": "usb_event_logger.c",
+    "line": 106,
+    "variables": []
+}

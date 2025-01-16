@@ -1,0 +1,10 @@
+{
+    "type": "ArbitraryCodeInjection",
+    "file": "FaultTolerantWriteSmm.c",
+    "line": 336,
+    "variables": [
+        "SmramLimitAddress",
+        "SmramBaseAddress",
+        "CommBufferSize"
+    ]
+}
