@@ -1,0 +1,18 @@
+Preconditions:
+CommBufferSize : int32 = symbolic
+SmramBaseAddress : int32 = symbolic
+SmramLimitAddress : int32 = symbolic
+(query [(Ult N0:(ReadLSB int64 0 SmramBaseAddress)
+              (ReadLSB int64 0 SmramLimitAddress))
+         (Eq FALSE (Ule N0 127267743203328))
+         (Eq FALSE
+             (Ule N0
+                  (Add int64 127267743203327
+                           (ReadLSB int64 0 CommBufferSize))))]
+        FALSE)
+
+
+# Eq represents the equality operator.
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/FaultTolerantWriteSmm.c:336: ASSERTION FAIL: !ArbitraryCodeInjection

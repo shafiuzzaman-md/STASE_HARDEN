@@ -14,6 +14,13 @@
         "pismmcpudxesmm.h": "c",
         "notifier.h": "c",
         "dangling_usb_logger.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "uefi.h": "c",
+        "pimm.h": "c",
+        "smmswapaddressrange.h": "c",
+        "faulttolerantwrite.h": "c",
+        "faulttolerantwritesmmcommon.h": "c",
+        "mmendofdxe.h": "c",
+        "baselib.h": "c"
     }
 }
