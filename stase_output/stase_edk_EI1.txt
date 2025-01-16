@@ -7,4 +7,4 @@ IoRead8Value : int32 = symbolic
 # Eq represents the equality operator.
 
 Postconditions:
-KLEE: ERROR: ./instrumented_code/SmmLegacy.c:58: ASSERTION FAIL: !StackIsExecutable
+KLEE: ERROR: ./instrumented_code/SmmLegacy.c:45: ASSERTION FAIL: !StackIsExecutable

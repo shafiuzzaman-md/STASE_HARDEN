@@ -12,7 +12,7 @@ sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.
 "test_usb_event_logger.c" )
 
 # Define an array of output file names corresponding to the source files
-outputd=("stase_edk_005.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_WMI1.txt" "stase_linux_WMI2.txt" 
+outputd=("stase_edk_EI1.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_WMI1.txt" "stase_linux_WMI2.txt" 
 "stase_linux_WMI3.txt")
 
 # Ensure that both arrays have the same length

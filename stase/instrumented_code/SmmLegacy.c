@@ -17,6 +17,8 @@ VOID                                 *LoadSmmVariableRegistration = NULL;
 EDKII_SMM_MEMORY_ATTRIBUTE_PROTOCOL  *mSmmMemoryAttribute1        = NULL;
 typedef void (*FuncType)(); // CROM - smm stack exec
 
+
+
 EFI_STATUS
 EFIAPI
 ClearStackNx (VOID)
@@ -39,7 +41,8 @@ ClearStackNx (VOID)
 //   if (Attribute == 0x00 || EFI_ERROR (Status)) {
 //     return Status;
 //   }
-
+StackIsExecutable = TRUE; 
+klee_assert(!StackIsExecutable);
 //   Status = mSmmMemoryAttribute1->ClearMemoryAttributes (
 //                                      mSmmMemoryAttribute1,
 //                                      Address,
@@ -47,7 +50,6 @@ ClearStackNx (VOID)
 //                                      *AttrPoint
 //                                      );
 //   EnableReadOnlyPageWriteProtect (WpEnabled, CetEnabled);
-  StackIsExecutable = TRUE;
   return Status;
 }
 
@@ -55,7 +57,6 @@ EFI_STATUS
 EFIAPI
 SetStackNx (VOID)
 {
-  klee_assert(!StackIsExecutable);
   EFI_STATUS            Status;
   UINT64                Attribute = 0x4000;
 //   EFI_PHYSICAL_ADDRESS  Address   = SmmStackArrayBase;
