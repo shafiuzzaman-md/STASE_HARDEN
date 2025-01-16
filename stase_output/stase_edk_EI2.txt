@@ -4,10 +4,10 @@ SmramBaseAddress : int32 = symbolic
 SmramLimitAddress : int32 = symbolic
 (query [(Ult N0:(ReadLSB int64 0 SmramBaseAddress)
               (ReadLSB int64 0 SmramLimitAddress))
-         (Eq FALSE (Ule N0 127267743203328))
+         (Eq FALSE (Ule N0 135783019184128))
          (Eq FALSE
              (Ule N0
-                  (Add int64 127267743203327
+                  (Add int64 135783019184127
                            (ReadLSB int64 0 CommBufferSize))))]
         FALSE)
 

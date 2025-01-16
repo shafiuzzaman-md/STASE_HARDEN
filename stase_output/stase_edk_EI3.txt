@@ -1,0 +1,6 @@
+Preconditions:
+(query [] FALSE)
+
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/HardwareHandler.c:519: ASSERTION FAIL: !DanglingPointerCreated
