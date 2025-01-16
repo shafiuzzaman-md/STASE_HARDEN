@@ -1,0 +1,6 @@
+Preconditions:
+(query [] FALSE)
+
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/vnet_pktfilter.c:297: ASSERTION FAIL: !DanglingPointerCreated

@@ -3,7 +3,7 @@
     "file": "dynamic_util.c",
     "line": 19,
     "variables": [
-        "message_buffer",
-        "pte"
+        "pte",
+        "message_buffer"
     ]
 }
