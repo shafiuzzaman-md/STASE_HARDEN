@@ -3,8 +3,8 @@
     "file": "FaultTolerantWriteSmm.c",
     "line": 336,
     "variables": [
-        "SmramLimitAddress",
+        "CommBufferSize",
         "SmramBaseAddress",
-        "CommBufferSize"
+        "SmramLimitAddress"
     ]
 }
