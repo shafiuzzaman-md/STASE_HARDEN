@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ECH.c"
 #include "klee/klee.h"
+BOOLEAN
+FtwSmmIsBufferOutsideSmmValid_stub (
+  UINTN Buffer,
+  UINTN BufferSize
+);
 #include "instrumented_code/FaultTolerantWriteSmm.c"
 
-/* Provide a stub CopyMem. In a real environment, CopyMem might be from 
-   EDK II or standard libraries. Here we just use memcpy. */
-void *CopyMem(void *Destination, const void *Source, size_t Length) {
-  return memcpy(Destination, Source, Length);
-}
 
 BOOLEAN
-FtwSmmIsBufferOutsideSmmValid (
+FtwSmmIsBufferOutsideSmmValid_stub (
   UINTN Buffer,
   UINTN BufferSize
 )

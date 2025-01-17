@@ -327,7 +327,7 @@ SmmFaultTolerantWriteHandler (
   }
 
   TempCommBufferSize = *CommBufferSize;
-  if (!FtwSmmIsBufferOutsideSmmValid ((UINTN)CommBuffer, TempCommBufferSize)) {
+  if (!FtwSmmIsBufferOutsideSmmValid_stub ((UINTN)CommBuffer, TempCommBufferSize)) {
    // DEBUG ((DEBUG_ERROR, "SmmFtwHandler: SMM communication buffer in SMRAM or overflow!\n"));
     return EFI_SUCCESS;
   }
