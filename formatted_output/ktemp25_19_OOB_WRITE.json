@@ -1,0 +1,8 @@
+{
+    "type": "net_ssid_size_sym < n",
+    "file": "ktemp25_19_OOB_WRITE.c",
+    "line": 19,
+    "variables": [
+        "net_ssid_size_sym"
+    ]
+}

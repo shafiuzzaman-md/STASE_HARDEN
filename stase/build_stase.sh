@@ -8,12 +8,15 @@ set -e
 KLEE="/home/shafi/klee_build/bin/klee"
 
 # Define an array of source files
-sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_RWVariableHandler1.c" "test_kbmi_usb.c" "test_kbmi_usb1.c"
-"test_usb_event_logger.c" "test_SmmFaultTolerantWriteHandler.c" "test_hardwarehandler.c" "test_kbmi_net.c" "test_kbmi_net1.c" "test_vnet_pkfilter.c")
+#sources=("test_SmmLegacyDispatcher.c" "test_B2SmiHandler.c" "test_B2SmiHandler1.c" "test_RWVariableHandler.c" "test_RWVariableHandler1.c" "test_kbmi_usb.c" "test_kbmi_usb1.c"
+#"test_usb_event_logger.c" "test_SmmFaultTolerantWriteHandler.c" "test_hardwarehandler.c" "test_kbmi_net.c" "test_kbmi_net1.c" "test_vnet_pkfilter.c")
+sources=("klee_driver_ktemp_ioctl_19_OOB_WRITE.c")
 
 # Define an array of output file names corresponding to the source files
-outputd=("stase_edk_EI1.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_WMI1.txt" "stase_linux_WMI2.txt" 
-"stase_linux_WMI3.txt" "stase_edk_EI2.txt" "stase_edk_EI3.txt" "stase_linux_WMI1_1.txt" "stase_linux_WMI2_1.txt" "stase_linux_WMI3_1.txt")
+#outputd=("stase_edk_EI1.txt" "stase_edk_014.txt" "stase_edk_015.txt" "stase_edk_022.txt" "stase_edk_021.txt" "stase_linux_WMI1.txt" "stase_linux_WMI2.txt" 
+#"stase_linux_WMI3.txt" "stase_edk_EI2.txt" "stase_edk_EI3.txt" "stase_linux_WMI1_1.txt" "stase_linux_WMI2_1.txt" "stase_linux_WMI3_1.txt")
+
+outputd=("ktemp25_19_OOB_WRITE.txt")
 
 # Ensure that both arrays have the same length
 if [ ${#sources[@]} -ne ${#outputd[@]} ]; then

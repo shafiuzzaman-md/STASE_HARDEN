@@ -1,0 +1,12 @@
+Preconditions:
+net_ssid_size_sym : int32 = symbolic
+(query [(Eq FALSE
+             (Ult (ReadLSB int64 0 net_ssid_size_sym)
+                  32))]
+        FALSE)
+
+
+# Eq represents the equality operator.
+
+Postconditions:
+KLEE: ERROR: ./instrumented_code/ktemp25_19_OOB_WRITE.c:19: ASSERTION FAIL: net_ssid_size_sym < n
