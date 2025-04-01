@@ -1,0 +1,5 @@
+config THERMAL_CHAR_DEVICE
+  default m
+  tristate "Thermal Character Device Driver"
+  help
+    Thermal Character Device Driver - get that temperature.

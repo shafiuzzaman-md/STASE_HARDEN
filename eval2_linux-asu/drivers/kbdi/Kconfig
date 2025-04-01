@@ -1,0 +1,5 @@
+config KBDI
+  default m
+  tristate "USB keyboard driver"
+  help
+    USB keyboard driver

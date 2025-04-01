@@ -1,0 +1,5 @@
+config KBMI_NET
+  default m
+  tristate "Keyboard Message Initializer Network"
+  help
+    Keyboard Message Initializer but on the net!

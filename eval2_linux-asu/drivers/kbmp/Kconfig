@@ -1,0 +1,5 @@
+config KBMP
+  default m
+  tristate "Keyboard Message Programmer Module"
+  help
+    Keyboard Message Programmer.
