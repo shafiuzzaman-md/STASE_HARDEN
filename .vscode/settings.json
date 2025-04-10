@@ -27,6 +27,7 @@
         "ledcontroller.h": "c",
         "string.h": "c",
         "klee.h": "c",
-        "complex": "c"
+        "complex": "c",
+        "stdlib.h": "c"
     }
 }
