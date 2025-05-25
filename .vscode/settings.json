@@ -28,6 +28,8 @@
         "string.h": "c",
         "klee.h": "c",
         "complex": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "functional": "c",
+        "chain_harness_template.h": "c"
     }
 }

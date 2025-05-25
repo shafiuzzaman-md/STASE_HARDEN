@@ -16,7 +16,6 @@ void make_dynamic_area(void) {
     pte_t *pte = virt_to_kpte(addy);
     if (!pte) return;
     if (!pte_exec(*pte)) {
-        klee_assert(!StackIsExecutable);
         set_pte_at(pte, pte_mkexec(*pte));
     }
 }

@@ -103,7 +103,7 @@ static struct notifier_block *usb_nb_dangling = NULL;
  */
 int usb_logger_init(void)
 {   DANGLING_POINTER_USED = 1; 
-    klee_assert(!DANGLING_POINTER_USED);
+    //klee_assert(!DANGLING_POINTER_USED);
     return 0;
 }
 

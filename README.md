@@ -48,3 +48,18 @@ python3 parse_output.py
 ```
 
 
+## Chaining
+
+
+- chain_config.json – describes the Eval2 chain (steps, symbolic ranges, postconditions).
+- chain_harness_template.c – the generic symbolic harness logic.
+- chain_harness_template.h – shared types for step descriptors
+
+``` cd chaining 
+    clang-14 -emit-llvm -c -g chain_harness_template.c -o chain_eval2.bc
+
+    klee --external-calls=all -libc=uclibc --posix-runtime --smtlib-human-readable \
+        --write-test-info --write-paths --write-smt2s --write-cov --write-cvcs \
+        --write-kqueries --write-sym-paths --only-output-states-covering-new \
+        --use-query-log=solver:smt2 --simplify-sym-indices --max-time=5 chain_eval2.bc
+```

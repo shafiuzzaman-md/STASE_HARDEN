@@ -1,0 +1,26 @@
+{
+  "name": "eval2",
+  "Ranges": {
+    "payload_range":  "payload",
+    "target_read_range":     "target",
+    "extra_ranges":   ["heap_chunk"]
+  },
+
+  "Steps": [
+    { "type": "CALL",  "function": "kbmi_usb_init"      },
+    { "type": "CALL",  "function": "usb_logger_init"    },
+    { "type": "ASSUME_LINK",
+      "from": "fp_slot",
+      "to":   "payload"                                 },
+    { "type": "CALL",  "function": "evt_notifier_init"  },
+    { "type": "CALL",  "function": "kbdi_init"          }
+  ],
+
+  "Trigger": {
+    "goal":               "cwrite_rexec",
+
+    "trigger_byte_name":  "payload_byte",
+    "pointer_slot":       "fp_slot",
+    "payload_range":      "payload"
+  }
+}
