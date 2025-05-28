@@ -1,0 +1,35 @@
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = HeapManager
+  FILE_GUID                      = ba5907b3-06ef-4670-9eb5-e47359d26190
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HeapManagerEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  HeapManager.c
+  HeapManager.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  Testcases/Testcases.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  SmmMemLib
+
+[Protocols]
+  gEfiHeapManagerReadyProtocolGuid    ## PRODUCES
+  gEfiHeapManagerProtocolGuid         ## PRODUCES
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid

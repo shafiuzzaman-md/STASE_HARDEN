@@ -1,0 +1,36 @@
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = CharConverter
+  FILE_GUID                      = d47d11ce-a093-4518-ab7e-270276dbfa1a
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CharConverterEntryPoint
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  CharConverter.c
+  CharConverter.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  OvmfPkg/OvmfPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  Testcases/Testcases.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  SmmMemLib
+
+[Protocols]
+  gEfiCharConverterReadyProtocolGuid    ## PRODUCES
+  gEfiCharConverterProtocolGuid         ## PRODUCES
+
+[Depex]
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiHeapManagerProtocolGuid

@@ -1,0 +1,10 @@
+Error: ASSERTION FAIL: MEM[addr] != shell_byte
+File: chain_harness_template.c
+Line: 57
+assembly.ll line: 9134
+State: 1
+Stack: 
+	#000009134 in __klee_posix_wrapped_main() at chain_harness_template.c:57
+	#100007130 in __user_main(1, 135012101914624, 135012101914640) at klee/runtime/POSIX/klee_init_env.c:245
+	#200000543 in __uClibc_main(134996255834112, 1, 135012101914624, 0, 0, 0, 0) at libc/misc/internals/__uClibc_main.c:401
+	#300000708 in main(1, 135012101914624)
